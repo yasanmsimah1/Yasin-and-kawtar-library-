@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassin and Kawtar Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #2e2e2e;
+            color: white;
+        }
+        #cover {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border: 3px solid #4CAF50;
+            border-radius: 10px;
+        }
+        .book-page {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .dark-mode .book-page {
+            background-color: #444;
+            color: white;
+        }
+        #content {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .toggle-button {
+            margin: 20px 0;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Yassin and Kawtar Library</h1>
+    
+    <!-- Control Panel (Admin Side) -->
+    <div id="admin-panel">
+        <h3>Admin Control Panel</h3>
+        <label for="cover-upload">Upload Book Cover:</label>
+        <input type="file" id="cover-upload" accept="image/*" onchange="updateCover()">
+        <br><br>
+        <button class="button toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+
+    <!-- Book Cover -->
+    <div id="book-cover">
+        <img id="cover" src="https://via.placeholder.com/300" alt="Book Cover">
+    </div>
+
+    <!-- Book Pages -->
+    <div id="book">
+        <div class="book-page">
+            <div id="content">
+                <h3>Chapter 1: Introduction</h3>
+                <p>Welcome to the first chapter of the book. This is where your content starts.</p>
+            </div>
+        </div>
+        <div class="book-page">
+            <div id="content">
+                <h3>Chapter 2: The Journey</h3>
+                <p>This is the second chapter where the journey begins.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Update book cover
+        function updateCover() {
+            const coverInput = document.getElementById('cover-upload');
+            const coverImage = document.getElementById('cover');
+            const file = coverInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    coverImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
